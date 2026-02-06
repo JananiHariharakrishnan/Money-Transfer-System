@@ -24,7 +24,7 @@ public class AccountServiceImpl implements AccountService{
     public Account getAccount(long id) {
         Optional<Account> opt = accountRepo.findById(id);
         if (opt.isEmpty())
-            throw new AccountNotFoundException();
+            throw new AccountNotFoundException("Account Not Found!");
         return opt.get();
     }
 
@@ -33,7 +33,7 @@ public class AccountServiceImpl implements AccountService{
     public double getBalance(long id) {
         Optional<Account> opt = accountRepo.findById(id);
         if (opt.isEmpty())
-            throw new AccountNotFoundException();
+            throw new AccountNotFoundException("Account Not Found!");
         return opt.get().getBalance();
     }
 
@@ -44,7 +44,7 @@ public class AccountServiceImpl implements AccountService{
         {
             opt = transactionLogRepo.findByToAccountId(id);
             if (opt.isEmpty())
-                throw new AccountNotFoundException();
+                throw new AccountNotFoundException("Account Not Found!");
             return opt.get();
         }
         else {
