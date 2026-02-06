@@ -8,6 +8,7 @@ import com.fidelity.mts.repository.TransactionLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -23,16 +24,16 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public Account getAccount(long id) {
         Optional<Account> opt = accountRepo.findById(id);
-        if (opt.isEmpty())
+        if (!opt.isPresent())
             throw new AccountNotFoundException("Account Not Found!");
         return opt.get();
     }
 
 
     @Override
-    public double getBalance(long id) {
+    public BigDecimal getBalance(long id) {
         Optional<Account> opt = accountRepo.findById(id);
-        if (opt.isEmpty())
+        if (!opt.isPresent())
             throw new AccountNotFoundException("Account Not Found!");
         return opt.get().getBalance();
     }
@@ -40,7 +41,7 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public TransactionLog getTransactions(long id) {
         Optional<TransactionLog> opt = transactionLogRepo.findByFromAccountId(id);
-        if (opt.isEmpty())
+        if (!opt.isPresent())
         {
             opt = transactionLogRepo.findByToAccountId(id);
             if (opt.isEmpty())

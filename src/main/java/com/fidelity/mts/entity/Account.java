@@ -1,51 +1,45 @@
 package com.fidelity.mts.entity;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.fidelity.mts.enums.AccountStatus;
 import jakarta.persistence.*;
-import org.yaml.snakeyaml.events.Event;
 
 @Entity
 @Table(name="accounts")
 public class Account{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment ID
-	@Column(columnDefinition = "BIGINT")
-	@OneToMany(mappedBy = "accounts", cascade = CascadeType.ALL, orphanRemoval = true)
+	@Column(columnDefinition = "BIGINT",name = "id")
 	private long id;
 
 	@Column(name = "holder_name", columnDefinition = "VARCHAR(255)",nullable = false)
 	private String holderName;
 	@Column(precision = 18, scale = 2, nullable = false)
-	private double balance;
+	private BigDecimal balance;
 	@Column(columnDefinition = "VARCHAR(20)",nullable = false)
 	private AccountStatus status;
-	@Column(columnDefinition = "INT DEFAULT=0")
-	private double version;
+	@Column(columnDefinition = "INT DEFAULT 0")
+	private int version;
 
 	@Column(name = "last_updated",columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private LocalDateTime lastUpdated;
-	 
 	public Account() {
-		
 	}
 
 	public Account(long id, String holderName, double balance, AccountStatus status, double version,
-			LocalDateTime lastUpdated) {
+				   LocalDateTime lastUpdated) {
 		this.id = id;
 		this.holderName = holderName;
-		this.balance = balance;
+		this.balance = BigDecimal.valueOf(balance);
 		this.status = status;
-		this.version = version;
+		this.version = (int) version;
 		this.lastUpdated = lastUpdated;
 	}
-	
 	public long getId() {
 		return id;
 	}
-	
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -58,12 +52,12 @@ public class Account{
 		this.holderName = holderName;
 	}
 
-	public double getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
 
 	public void setBalance(double balance) {
-		this.balance = balance;
+		this.balance = BigDecimal.valueOf(balance);
 	}
 
 	public AccountStatus getStatus() {
@@ -79,7 +73,7 @@ public class Account{
 	}
 
 	public void setVersion(double version) {
-		this.version = version;
+		this.version = (int) version;
 	}
 
 	public LocalDateTime getLastUpdated() {
@@ -91,14 +85,14 @@ public class Account{
 	}
 
 	public double debit(double current_bal, double debit_amount) {
-        return current_bal - debit_amount;
+		return current_bal - debit_amount;
 	}
 
 	public double credit(double current_bal,double credit_amount) {
 		return current_bal + credit_amount;
 	}
 
-	public boolean isActive(AccountStatus status) {
+	public boolean isActive() {
 		return status == AccountStatus.ACTIVE;
 	}
 }

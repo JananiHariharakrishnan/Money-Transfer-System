@@ -1,5 +1,6 @@
 package com.fidelity.mts.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -10,19 +11,15 @@ import jakarta.persistence.*;
 @Table(name="transaction_logs")
 public class TransactionLog {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(columnDefinition = "VARCHAR(36)")
+	@GeneratedValue
+	@Column(name = "id",columnDefinition = "CHAR(36)")
 	private UUID id;
-	@Column(columnDefinition = "BIGINT")
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "from_account", nullable = false)
+	@Column(columnDefinition = "BIGINT", name="from_account_id",nullable = false)
 	private long fromAccountId;
-	@Column(columnDefinition = "BIGINT")
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "to_account", nullable = false)
+	@Column(columnDefinition = "BIGINT", name="to_account_id",nullable = false)
 	private long toAccountId;
 	@Column(precision = 18, scale = 2, nullable = false)
-	private double amount;
+	private BigDecimal amount;
 	@Column(name = "status",columnDefinition = "VARCHAR(20)",nullable = false)
 	private TransactionStatus status;
 	@Column(name = "failure_reason",columnDefinition = "VARCHAR(255)")
@@ -32,16 +29,34 @@ public class TransactionLog {
 	@Column(name = "created_on",
 			columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private LocalDateTime createdOn;
-	
+
+
+	@ManyToOne
+	@JoinColumn(
+			name="from_account_id",
+			referencedColumnName = "id",
+			insertable = false,
+			updatable = false
+	)
+	private Account FromAccount;
+
+	@ManyToOne
+	@JoinColumn(
+			name="to_account_id",
+			referencedColumnName = "id",
+			insertable = false,
+			updatable = false
+	)
+	private Account ToAccount;
+
 	public TransactionLog() {
-		
 	}
 	public TransactionLog(UUID id, long fromAccountId, long toAccountId, double amount, TransactionStatus status,
-			String failureReason, String idempotencyKey, LocalDateTime createdOn) {
+						  String failureReason, String idempotencyKey, LocalDateTime createdOn) {
 		this.id = id;
 		this.fromAccountId = fromAccountId;
 		this.toAccountId = toAccountId;
-		this.amount = amount;
+		this.amount = BigDecimal.valueOf(amount);
 		this.status = status;
 		this.failureReason = failureReason;
 		this.idempotencyKey = idempotencyKey;
@@ -65,11 +80,11 @@ public class TransactionLog {
 	public void setToAccountId(long toAccountId) {
 		this.toAccountId = toAccountId;
 	}
-	public double getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 	public void setAmount(double amount) {
-		this.amount = amount;
+		this.amount = BigDecimal.valueOf(amount);
 	}
 	public TransactionStatus getStatus() {
 		return status;
