@@ -26,4 +26,14 @@ public class MtsGlobalNotFoundException {
     public ResponseEntity<String> InsufficientBalanceException(InsufficientBalanceException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(value=SelfTransferException.class)
+    public ResponseEntity<String> SelfTransferException(SelfTransferException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value=NegativeAmountException.class)
+    public ResponseEntity<String> NegativeBalanceException(NegativeAmountException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }

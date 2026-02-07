@@ -19,6 +19,7 @@ public class Account{
 	@Column(precision = 18, scale = 2, nullable = false)
 	private BigDecimal balance;
 	@Column(columnDefinition = "VARCHAR(20)",nullable = false)
+	@Enumerated(EnumType.STRING)
 	private AccountStatus status;
 	@Column(columnDefinition = "INT DEFAULT 0")
 	private int version;

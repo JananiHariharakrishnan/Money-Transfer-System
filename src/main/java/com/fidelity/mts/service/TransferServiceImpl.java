@@ -4,9 +4,8 @@ import com.fidelity.mts.dto.TransferRequestDto;
 import com.fidelity.mts.entity.Account;
 import com.fidelity.mts.entity.TransactionLog;
 import com.fidelity.mts.enums.AccountStatus;
-import com.fidelity.mts.exceptions.AccountNotActiveException;
-import com.fidelity.mts.exceptions.AccountNotFoundException;
-import com.fidelity.mts.exceptions.InsufficientBalanceException;
+import com.fidelity.mts.enums.TransactionStatus;
+import com.fidelity.mts.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,7 @@ public class TransferServiceImpl implements TransferService {
     AccountService accountService;
 
     @Override
-    public void transfer(TransferRequestDto transferRequest) {
+    public TransactionStatus transfer(TransferRequestDto transferRequest) {
         long fromId=transferRequest.getFromAccountId();
         Account fromAccount=accountService.getAccount(fromId);
 
@@ -30,10 +29,10 @@ public class TransferServiceImpl implements TransferService {
 
         boolean validTransfer=validateTransfer(fromAccount,toAccount,amount);
         if(validTransfer){
-            executeTransfer();
+            return executeTransfer();
         }
         else{
-            return;
+            return TransactionStatus.FAILURE;
         }
 
 
@@ -43,9 +42,9 @@ public class TransferServiceImpl implements TransferService {
     public boolean validateTransfer(Account senderAcc, Account recieverAcc, BigDecimal amountToBeDebited) {
 
         //Checking Self Transfer
-        if(senderAcc.getId()==recieverAcc.getId()){
-            //Here we have to return error because self transfer is not allowed
-            //return;
+        if(senderAcc.getId()==(recieverAcc.getId())){
+            throw new SelfTransferException("Self Transfer is not allowed!");
+
         }
 
         //Checking if Sender Account is active
@@ -61,21 +60,19 @@ public class TransferServiceImpl implements TransferService {
         //Checking if amount > 0
 
         if(amountToBeDebited.compareTo(BigDecimal.ZERO)<0){
-            //Here we have to return error because amount > 0 is a mandatory condition
-            //throw new ;
+            throw new NegativeAmountException("Negative Amount cannot be transferred!");
         }
 
         if((amountToBeDebited.compareTo(senderAcc.getBalance())>0)){
             throw new InsufficientBalanceException("Balance is not sufficient");
         }
 
-
         return true;
     }
 
     @Override
-    public void executeTransfer() {
+    public TransactionStatus executeTransfer() {
 
-
+        return TransactionStatus.SUCCESS;
     }
 }

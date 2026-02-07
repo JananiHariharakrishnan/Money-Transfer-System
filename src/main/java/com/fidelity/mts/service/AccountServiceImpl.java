@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,18 +41,19 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public TransactionLog getTransactions(long id) {
-        Optional<TransactionLog> opt = transactionLogRepo.findByFromAccountId(id);
-        if (!opt.isPresent())
-        {
-            opt = transactionLogRepo.findByToAccountId(id);
-            if (opt.isEmpty())
-                throw new AccountNotFoundException("Account Not Found!");
-            return opt.get();
+    public List<TransactionLog> getTransactions(long id) {
+        List<TransactionLog> fromTrans = transactionLogRepo.findAllByFromAccountId(id);
+        List<TransactionLog> toTrans = transactionLogRepo.findAllByToAccountId(id);
+
+        List<TransactionLog> allTrans = new ArrayList<>();
+        allTrans.addAll(fromTrans);
+        allTrans.addAll(toTrans);
+
+        if (allTrans.size()==0) {
+            throw new AccountNotFoundException("No transactions found for Account ID: " + id);
         }
-        else {
-            return opt.get();
-        }
+
+        return allTrans;
     }
 
 }

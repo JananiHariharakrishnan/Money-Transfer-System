@@ -21,6 +21,7 @@ public class TransactionLog {
 	@Column(precision = 18, scale = 2, nullable = false)
 	private BigDecimal amount;
 	@Column(name = "status",columnDefinition = "VARCHAR(20)",nullable = false)
+	@Enumerated(EnumType.STRING)
 	private TransactionStatus status;
 	@Column(name = "failure_reason",columnDefinition = "VARCHAR(255)")
 	private String failureReason;

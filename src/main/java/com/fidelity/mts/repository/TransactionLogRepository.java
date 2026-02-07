@@ -4,10 +4,11 @@ import com.fidelity.mts.entity.Account;
 import com.fidelity.mts.entity.TransactionLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface TransactionLogRepository extends JpaRepository<TransactionLog,Integer> {
-    Optional<TransactionLog> findByFromAccountId(long id);
+    List<TransactionLog> findAllByFromAccountId(long id);
 
-    Optional<TransactionLog> findByToAccountId(long id);
+    List<TransactionLog> findAllByToAccountId(long id);
 }
