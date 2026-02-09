@@ -102,7 +102,7 @@ public class TransferServiceImpl implements TransferService {
 
     @Override
     public TransferResponseDto executeTransfer(Account senderAcc, Account recieverAcc, BigDecimal amountToBeDebited, String idempotency_key) {
-        if(transactionLogRepository.findByIdempotencyKey(idempotency_key).size()==0){
+        if(transactionLogRepository.findByIdempotencyKey(idempotency_key).size()!=0){
             throw new DuplicateTransferException("Duplicate Transaction not allowed!!");
         }
 
