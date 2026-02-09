@@ -1,39 +1,47 @@
 package com.fidelity.mts.exceptions;
 
+import com.fidelity.mts.dto.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class MtsGlobalNotFoundException {
     @ExceptionHandler(value=AccountNotActiveException.class)
-    public ResponseEntity<String> AccountNotActiveException(AccountNotActiveException ex){
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ErrorResponseDto> AccountNotActiveException(AccountNotActiveException ex){
+        ErrorResponseDto res = new ErrorResponseDto("ACC-403", ex.getMessage());
+        return new ResponseEntity<>(res, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(value=AccountNotFoundException.class)
-    public ResponseEntity<String> AccountNotFoundException(AccountNotFoundException ex){
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ErrorResponseDto> AccountNotFoundException(AccountNotFoundException ex){
+        ErrorResponseDto res = new ErrorResponseDto("ACC-404", ex.getMessage());
+        return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value=DuplicateTransferException.class)
-    public ResponseEntity<String> DuplicateTransferException(DuplicateTransferException ex){
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ErrorResponseDto> DuplicateTransferException(DuplicateTransferException ex){
+        ErrorResponseDto res = new ErrorResponseDto("TRX-409", ex.getMessage());
+        return new ResponseEntity<>(res, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(value=InsufficientBalanceException.class)
-    public ResponseEntity<String> InsufficientBalanceException(InsufficientBalanceException ex){
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ErrorResponseDto> InsufficientBalanceException(InsufficientBalanceException ex){
+        ErrorResponseDto res = new ErrorResponseDto("TRX-400", ex.getMessage());
+        return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value=SelfTransferException.class)
-    public ResponseEntity<String> SelfTransferException(SelfTransferException ex){
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ErrorResponseDto> SelfTransferException(SelfTransferException ex){
+        ErrorResponseDto res = new ErrorResponseDto("VAL-422", ex.getMessage());
+        return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value=NegativeAmountException.class)
-    public ResponseEntity<String> NegativeBalanceException(NegativeAmountException ex){
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ErrorResponseDto> NegativeBalanceException(NegativeAmountException ex){
+        ErrorResponseDto res = new ErrorResponseDto("VAL-422", ex.getMessage());
+        return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
     }
 }

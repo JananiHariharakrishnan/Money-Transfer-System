@@ -7,6 +7,8 @@ public class TransferRequestDto {
     private long toAccountId;
     private BigDecimal amount;
 
+    private String idempotencyKey;
+
     public String getIdempotencyKey() {
         return idempotencyKey;
     }
@@ -15,17 +17,8 @@ public class TransferRequestDto {
         this.idempotencyKey = idempotencyKey;
     }
 
-    private String idempotencyKey;
-
     public long getFromAccountId() {
         return fromAccountId;
-    }
-    public TransferRequestDto(){}
-    public TransferRequestDto(long fromAccountId, long toAccountId, BigDecimal amount, String idempotencyKey) {
-        this.fromAccountId = fromAccountId;
-        this.toAccountId = toAccountId;
-        this.amount = amount;
-        this.idempotencyKey = idempotencyKey;
     }
 
     public void setFromAccountId(long fromAccountId) {
@@ -47,4 +40,12 @@ public class TransferRequestDto {
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
+
+    public TransferRequestDto(long fromAccountId, long toAccountId, BigDecimal amount, String idempotencyKey) {
+        this.fromAccountId = fromAccountId;
+        this.toAccountId = toAccountId;
+        this.amount = amount;
+        this.idempotencyKey = idempotencyKey;
+    }
+
 }

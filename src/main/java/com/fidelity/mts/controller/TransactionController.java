@@ -1,6 +1,7 @@
 package com.fidelity.mts.controller;
 
 import com.fidelity.mts.dto.TransferRequestDto;
+import com.fidelity.mts.dto.TransferResponseDto;
 import com.fidelity.mts.entity.TransactionLog;
 import com.fidelity.mts.enums.TransactionStatus;
 import com.fidelity.mts.service.AccountService;
@@ -19,8 +20,8 @@ public class TransactionController {
     @Autowired
     TransferService transferService;
     @PostMapping("/transfers")
-    public ResponseEntity<TransactionStatus> getTransactionLogById(@RequestBody TransferRequestDto transferRequestDto) {
-        TransactionStatus e = transferService.transfer(transferRequestDto);
+    public ResponseEntity<TransferResponseDto> getTransactionLogById(@RequestBody TransferRequestDto transferRequestDto) {
+        TransferResponseDto e = transferService.transfer(transferRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(e);
     }
 }

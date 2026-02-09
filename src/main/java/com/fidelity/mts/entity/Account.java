@@ -57,8 +57,8 @@ public class Account{
 		return balance;
 	}
 
-	public void setBalance(double balance) {
-		this.balance = BigDecimal.valueOf(balance);
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
 	}
 
 	public AccountStatus getStatus() {
@@ -85,12 +85,12 @@ public class Account{
 		this.lastUpdated = lastUpdated;
 	}
 
-	public double debit(double current_bal, double debit_amount) {
-		return current_bal - debit_amount;
+	public BigDecimal debit(BigDecimal current_bal, BigDecimal debit_amount) {
+		return current_bal.subtract(debit_amount) ;
 	}
 
-	public double credit(double current_bal,double credit_amount) {
-		return current_bal + credit_amount;
+	public BigDecimal credit(BigDecimal current_bal,BigDecimal credit_amount) {
+		return current_bal.add(credit_amount);
 	}
 
 	public boolean isActive() {

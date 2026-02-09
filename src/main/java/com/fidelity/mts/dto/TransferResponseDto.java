@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public class TransferResponseDto {
-    private UUID id;
+    private String id;
 
     private String finalMessage;
 
@@ -24,11 +24,11 @@ public class TransferResponseDto {
 
     private BigDecimal amount;
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -64,7 +64,7 @@ public class TransferResponseDto {
         this.amount = amount;
     }
 
-    public TransferResponseDto(UUID id, String finalMessage, TransactionStatus status, long toAccountId, long fromAccountId, BigDecimal amount) {
+    public TransferResponseDto(String id, String finalMessage, TransactionStatus status, long toAccountId, long fromAccountId, BigDecimal amount) {
         this.id = id;
         this.finalMessage = finalMessage;
         this.status = status;
