@@ -9,6 +9,10 @@ public class TransferRequestDto {
 
     private String idempotencyKey;
 
+    public TransferRequestDto() {
+
+    }
+
     public String getIdempotencyKey() {
         return idempotencyKey;
     }

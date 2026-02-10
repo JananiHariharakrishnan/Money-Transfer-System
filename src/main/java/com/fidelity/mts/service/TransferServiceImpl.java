@@ -11,6 +11,7 @@ import com.fidelity.mts.repository.AccountRepository;
 import com.fidelity.mts.repository.TransactionLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -101,6 +102,7 @@ public class TransferServiceImpl implements TransferService {
     }
 
     @Override
+    @Transactional
     public TransferResponseDto executeTransfer(Account senderAcc, Account recieverAcc, BigDecimal amountToBeDebited, String idempotency_key) {
         if(transactionLogRepository.findByIdempotencyKey(idempotency_key).size()!=0){
             throw new DuplicateTransferException("Duplicate Transaction not allowed!!");
@@ -109,8 +111,11 @@ public class TransferServiceImpl implements TransferService {
         senderAcc.setBalance(senderAcc.debit(senderAcc.getBalance(),amountToBeDebited));
         recieverAcc.setBalance(recieverAcc.credit(recieverAcc.getBalance(),amountToBeDebited));
 
-        accountRepository.save(senderAcc);
-        accountRepository.save(recieverAcc);
+        senderAcc.setLastUpdated(LocalDateTime.now());
+        recieverAcc.setLastUpdated(LocalDateTime.now());
+
+        accountRepository.saveAndFlush(senderAcc);
+        accountRepository.saveAndFlush(recieverAcc);
         UUID temp = UUID.randomUUID();
         TransactionLog transactionLog = new TransactionLog(senderAcc.getId(), recieverAcc.getId(), amountToBeDebited.doubleValue(),TransactionStatus.SUCCESS,"NULL",idempotency_key, LocalDateTime.now());
         transactionLog.setId(temp);

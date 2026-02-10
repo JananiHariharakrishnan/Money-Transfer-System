@@ -56,4 +56,10 @@ public class AccountServiceImpl implements AccountService{
         return allTrans;
     }
 
+    @Override
+    public long addAccount(Account e) {
+        accountRepo.save(e);
+        return e.getId();
+    }
+
 }

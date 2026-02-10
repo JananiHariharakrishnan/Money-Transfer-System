@@ -14,4 +14,5 @@ public interface AccountService {
 
     List<TransactionLog> getTransactions(long id);
 
+    long addAccount(Account e);
 }

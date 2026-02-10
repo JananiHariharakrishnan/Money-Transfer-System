@@ -17,6 +17,12 @@ import java.util.Optional;
 public class AccountController {
     @Autowired
     AccountService service;
+
+    @PostMapping
+    public ResponseEntity<String> addEmployee(@RequestBody Account e) {
+        long id = service.addAccount(e);
+        return ResponseEntity.status(HttpStatus.OK).body("Account with id "+ id +" has been created");
+    }
     @GetMapping("/accounts/{id}")
     public ResponseEntity<Account> getAccountsById(@PathVariable long id) {
         System.out.println(id);
