@@ -10,7 +10,6 @@ import com.fidelity.mts.service.AccountService;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/")

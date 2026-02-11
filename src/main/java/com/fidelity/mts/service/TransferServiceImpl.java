@@ -4,7 +4,6 @@ import com.fidelity.mts.dto.TransferRequestDto;
 import com.fidelity.mts.dto.TransferResponseDto;
 import com.fidelity.mts.entity.Account;
 import com.fidelity.mts.entity.TransactionLog;
-import com.fidelity.mts.enums.AccountStatus;
 import com.fidelity.mts.enums.TransactionStatus;
 import com.fidelity.mts.exceptions.*;
 import com.fidelity.mts.repository.AccountRepository;
@@ -15,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

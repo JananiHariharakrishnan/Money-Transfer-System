@@ -3,7 +3,6 @@ package com.fidelity.mts.service;
 import com.fidelity.mts.dto.TransferRequestDto;
 import com.fidelity.mts.dto.TransferResponseDto;
 import com.fidelity.mts.entity.Account;
-import com.fidelity.mts.enums.TransactionStatus;
 
 import java.math.BigDecimal;
 

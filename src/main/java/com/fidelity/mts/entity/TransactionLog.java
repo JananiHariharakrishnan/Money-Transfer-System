@@ -57,7 +57,7 @@ public class TransactionLog {
 	private Account ToAccount;
 
 	public TransactionLog() {
-		// Optionally generate UUID here if needed
+
 	}
 
 	public TransactionLog(long fromAccountId, long toAccountId, double amount, TransactionStatus status,

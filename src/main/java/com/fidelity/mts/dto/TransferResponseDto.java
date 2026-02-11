@@ -3,7 +3,6 @@ package com.fidelity.mts.dto;
 import com.fidelity.mts.enums.TransactionStatus;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 public class TransferResponseDto {
     private String id;

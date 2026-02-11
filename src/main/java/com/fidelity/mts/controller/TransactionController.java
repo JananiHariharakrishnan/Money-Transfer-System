@@ -2,9 +2,6 @@ package com.fidelity.mts.controller;
 
 import com.fidelity.mts.dto.TransferRequestDto;
 import com.fidelity.mts.dto.TransferResponseDto;
-import com.fidelity.mts.entity.TransactionLog;
-import com.fidelity.mts.enums.TransactionStatus;
-import com.fidelity.mts.service.AccountService;
 import com.fidelity.mts.service.TransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
