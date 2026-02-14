@@ -68,5 +68,9 @@ export class Dashboard implements OnInit {
     this.cd.detectChanges();
   }
 
+  logout() {
+    this.router.navigate(['/login']);
+    this.cd.detectChanges();
+  }
   
 }

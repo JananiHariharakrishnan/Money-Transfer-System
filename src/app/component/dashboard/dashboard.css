@@ -1,145 +1,121 @@
-/* page background */
+/* Page background */
 .page {
   min-height: 100vh;
-  background: #f6f8fb;
+  background: #d4dbd6;   /* same as form background */
   padding: 24px;
   display: flex;
   justify-content: center;
 }
 
-/* card shell (looks premium on laptop) */
+/* Main shell */
 .shell {
   width: 100%;
-  max-width: 980px;          /* laptop width */
-  background: #ffffff;
-  border: 1px solid #eef2f7;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
-  padding: 20px;
-}
-
-/* top section becomes 2 columns on desktop */
-.top {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-}
-
-@media (min-width: 900px) {
-  .top {
-    grid-template-columns: 1.1fr 0.9fr; /* left a bit wider */
-    align-items: start;
-  }
-}
-
-/* welcome + balance */
-.welcome-banner h3 {
-  margin: 0 0 12px;
-  color: #0f172a;
-}
-
-.balance-card {
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  padding: 22px;
+  max-width: 980px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
   border-radius: 14px;
+  border: solid 1px #1e3f00;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+}
+
+/* Welcome */
+.welcome-banner h3 {
+  margin: 0;
+  color: #1e3f00;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+/* Balance Card */
+.balance-card {
+  background: #1e3f00;
+  padding: 22px;
+  border-radius: 12px;
+  width: 50%;
+  margin-left: 25%;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .balance-card p {
   margin: 0;
-  opacity: 0.95;
-  font-weight: 600;
+  font-weight: bold;
+  opacity: 0.9;
 }
 
 .balance-card h1 {
   margin: 10px 0 0;
-  font-size: 30px;
+  font-size: 40px;
 }
 
-/* 2x2 action grid */
+/* 2x2 Grid */
 .action-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 16px;
 }
 
+/* Action Cards */
 .action-card {
-  background: #fff;
-  border: 1px solid #e9edf3;
-  border-radius: 12px;
-  padding: 14px 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #1e3f00;
+  border-radius: 10px;
+  padding: 16px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 1px 0 rgba(16, 24, 40, 0.04);
+  gap: 10px;
+  font-weight: bold;
+  transition: all 0.2s ease;
 }
 
-.action-card:active {
-  transform: translateY(1px);
+.action-card:hover {
+  background-color: #45a049;
+  color: white;
 }
 
 .icon-circle {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
-  background: #eef5ff;
+  background: rgba(30, 63, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .icon-circle .material-symbols-outlined {
-  font-size: 20px;
-  color: #2f6fed;
+  font-size: 22px;
+  color: #1e3f00;
+}
+
+.action-card:hover .material-symbols-outlined {
+  color: white;
 }
 
 .label {
-  font-size: 13px;
-  color: #344054;
-  font-weight: 700;
+  font-size: 14px;
 }
 
-/* desktop nav row */
-.desktop-nav {
-  margin-top: 14px;
-  background: #ffffff;
-  border: 1px solid #eef2f7;
-  border-radius: 12px;
-  padding: 10px 8px;
-  display: none;
-  justify-content: space-around;
-}
-
-@media (min-width: 900px) {
-  .desktop-nav {
-    display: flex; /* show on laptop */
-  }
-}
-
-/* bottom nav (mobile only) */
+/* Bottom Navigation */
 .bottom-nav {
-  margin-top: 16px;
-  background: #ffffff;
-  border-top: 1px solid #eef2f7;
-  border-radius: 12px;
-  padding: 10px 8px;
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  border-top: 1px solid #1e3f00;
+  border-radius: 10px;
+  padding: 12px 8px;
   display: flex;
   justify-content: space-around;
 }
 
-.mobile-only {
-  display: flex;
-}
-
-@media (min-width: 900px) {
-  .mobile-only {
-    display: none; /* hide bottom nav on laptop */
-  }
-}
-
-/* nav items */
+/* Nav Items */
 .nav-item {
   border: none;
   background: transparent;
@@ -148,16 +124,17 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  color: #667085;
-  font-size: 11px;
+  color: #1e3f00;
+  font-weight: bold;
+  font-size: 12px;
   min-width: 70px;
+  transition: all 0.2s ease;
 }
 
 .nav-item .material-symbols-outlined {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .nav-item.active {
-  color: #2f6fed;
-  font-weight: 800;
+  color: #45a049;
 }
