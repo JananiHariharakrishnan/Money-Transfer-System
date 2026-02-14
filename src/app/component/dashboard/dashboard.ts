@@ -26,6 +26,7 @@ export class Dashboard implements OnInit {
     if (this.accId > 0) {
       this.loadUser();
       this.cd.detectChanges();
+      console.log("Inside dashboard - with accId correct")
     } else {
       this.router.navigate(['/']); // invalid access
     }
@@ -37,6 +38,7 @@ export class Dashboard implements OnInit {
     this.service.getUserById(this.accId).subscribe({
       next: (data) => {
         this.user = data;
+        console.log("Loading user"+data)
       },
       error: (err) => {
         console.error('Error loading user', err);

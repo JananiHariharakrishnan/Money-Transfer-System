@@ -31,17 +31,31 @@ export class Login {
   }
 
   doLogin() {
-    if(this.username !== '' && this.username !== null 
-        && this.password !== '' && this.password !== null) {
-          this.authService.authenticate(this.username,this.password)
-            .subscribe(data=>{
-              this.data = data;
-              console.log("after login : "+this.data);
-              const userId = this.username;
-              this.router.navigate(['/dashboard', userId]);
-        }); 
-        } else {
-          window.alert("Invalid creditials!!!");
+
+  if (this.username && this.password) {
+
+    this.authService.authenticate(this.username, this.password)
+      .subscribe({
+        next: (data) => {
+
+          this.data = data;
+          console.log("after login :", this.data);
+
+          const userId = this.username;
+          console.log("after login username:", this.username);
+
+          this.router.navigate(['/dashboard', userId]);
+        },
+
+        error: (err) => {
+          console.error("Login failed:", err);
+          window.alert("Invalid username or password!");
         }
+      });
+
+  } else {
+    window.alert("Please enter username and password!");
   }
+}
+
 }

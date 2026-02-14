@@ -20,7 +20,6 @@ export class History implements OnInit {
 
   ngOnInit(): void {
     this.accId = Number(this.route.snapshot.paramMap.get('id')) || 0;
-
     if (this.accId <= 0) {
       this.router.navigate(['/']);
       return;
