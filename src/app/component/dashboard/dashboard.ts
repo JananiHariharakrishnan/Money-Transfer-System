@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Accountholderservice } from '../../service/accountholderservice';
 import { AccountHolderInterface } from '../account-holder-interface';
@@ -14,6 +14,7 @@ export class Dashboard implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private service = inject(Accountholderservice);
+  private cd=inject(ChangeDetectorRef);
 
   user?: AccountHolderInterface;
   accId: number = 0;
@@ -24,10 +25,13 @@ export class Dashboard implements OnInit {
 
     if (this.accId > 0) {
       this.loadUser();
+      this.cd.detectChanges();
     } else {
       this.router.navigate(['/']); // invalid access
     }
   }
+
+
 
   loadUser() {
     this.service.getUserById(this.accId).subscribe({
@@ -44,18 +48,22 @@ export class Dashboard implements OnInit {
   // Navigation Methods
   goHome() {
     this.router.navigate(['/dashboard', this.accId]);
+    this.cd.detectChanges();
   }
 
   goToTransfer() {
     this.router.navigate(['/transfer', this.accId]);
+    this.cd.detectChanges();
   }
 
   goToHistory() {
     this.router.navigate(['/history', this.accId]);
+    this.cd.detectChanges();
   }
 
   goToProfile() {
     this.router.navigate(['/profile', this.accId]);
+    this.cd.detectChanges();
   }
 
   
