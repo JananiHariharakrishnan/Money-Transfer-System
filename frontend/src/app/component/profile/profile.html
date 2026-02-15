@@ -1,0 +1,55 @@
+<div class="page">
+  <div class="shell">
+    <h2>Account Profile</h2>
+
+    <div *ngIf="loading" class="loading">Loading profile...</div>
+
+    <div *ngIf="!loading && user" class="profile-info">
+      <div class="info-item">
+        <label>Account Holder Name</label>
+        <div class="value">{{ user.holderName }}</div>
+      </div>
+
+      <div class="info-item">
+        <label>Account ID</label>
+        <div class="value">{{ accId }}</div>
+      </div>
+
+      <div class="info-item">
+        <label>Current Balance</label>
+        <div class="value amount">₹ {{ user.balance | number:'1.2-2' }}</div>
+      </div>
+
+      <div class="info-item">
+        <label>Account Status</label>
+        <div class="value" [ngClass]="user.status === 'ACTIVE' ? 'status-active' : 'status-inactive'">
+          {{ user.status }}
+        </div>
+      </div>
+
+      <div class="info-item">
+        <label>Last Updated</label>
+        <div class="value">{{ user.lastUpdated | date:'dd MMM yyyy, hh:mm a' }}</div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <button class="nav-item" (click)="goHome()">
+        <span class="material-symbols-outlined">home</span>
+        <div>Home</div>
+      </button>
+
+      <button class="nav-item" (click)="goToTransfer()">
+        <span class="material-symbols-outlined">sync_alt</span>
+        <div>Transfer</div>
+      </button>
+
+      <button class="nav-item" (click)="goToHistory()">
+        <span class="material-symbols-outlined">history</span>
+        <div>History</div>
+      </button>
+    </div>
+
+  </div>
+</div>

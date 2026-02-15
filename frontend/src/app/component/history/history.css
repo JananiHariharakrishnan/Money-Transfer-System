@@ -1,0 +1,156 @@
+.page {
+  min-height: 100vh;
+  background: #f6f8fb;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.shell {
+  width: 100%;
+  max-width: 980px;
+  background: #fff;
+  border: 1px solid #eef2f7;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
+  padding: 18px;
+}
+
+.header h2 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.sub {
+  margin-top: 4px;
+  color: #667085;
+  font-size: 13px;
+}
+
+.loading, .empty {
+  margin-top: 16px;
+  color: #667085;
+}
+
+.tx-table {
+  width: 100%;
+  margin-top: 14px;
+  border-collapse: collapse;
+}
+
+.tx-table th, .tx-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eef2f7;
+  text-align: left;
+  font-size: 14px;
+}
+
+.tx-table th {
+  color: #475467;
+  font-weight: 700;
+  background: #fafbff;
+}
+
+.right {
+  text-align: right;
+}
+
+.chip {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.chip.credit {
+  background: #eafaf0;
+  color: #067647;
+}
+
+.chip.debit {
+  background: #ffecec;
+  color: #b42318;
+}
+
+.amt-credit {
+  color: #067647;
+  font-weight: 800;
+}
+
+.amt-debit {
+  color: #b42318;
+  font-weight: 800;
+}
+
+.badge {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.badge.ok {
+  background: #ecfdf3;
+  color: #067647;
+}
+
+.badge.bad {
+  background: #fff1f3;
+  color: #b42318;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-top: 1px solid #ddd;
+  border-radius: 0;
+  padding: 12px 8px;
+  display: flex;
+  justify-content: space-around;
+  z-index: 100;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #1e3f00;
+  font-weight: bold;
+  font-size: 12px;
+  min-width: 70px;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.nav-item .material-symbols-outlined {
+  font-size: 22px;
+}
+
+.nav-item:hover {
+  background: rgba(30, 63, 0, 0.1);
+}
+
+.nav-item.active {
+  color: #45a049;
+  background: rgba(69, 160, 73, 0.1);
+}
+
+/* Add padding to shell to avoid overlap */
+.shell {
+  margin-bottom: 80px;
+}
+
+  color: #b42318;
+}

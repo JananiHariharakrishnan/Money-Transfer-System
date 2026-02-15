@@ -1,0 +1,68 @@
+<div class="page">
+  <div class="shell">
+    <div class="header">
+      <h2>Transaction History</h2>
+      <div class="sub">Account: {{ accId }}</div>
+    </div>
+
+    <div *ngIf="loading" class="loading">Loading transactions...</div>
+
+    <div *ngIf="!loading && transactions.length === 0" class="empty">
+      No transactions found.
+    </div>
+
+    <table *ngIf="!loading && transactions.length > 0" class="tx-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th class="right">Amount</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let t of transactions">
+          <td>{{ t.createdOn | date:'dd MMM yyyy, hh:mm a' }}</td>
+
+          <td>
+            <span class="chip" [ngClass]="isCredit(t) ? 'credit' : 'debit'">
+              {{ isCredit(t) ? 'CREDIT' : 'DEBIT' }}
+            </span>
+          </td>
+
+          <td class="right">
+            <span [ngClass]="isCredit(t) ? 'amt-credit' : 'amt-debit'">
+              {{ isCredit(t) ? '+' : '-' }}₹ {{ t.amount | number:'1.2-2' }}
+            </span>
+          </td>
+
+          <td>
+            <span class="badge" [ngClass]="(t.status || '').toUpperCase() === 'SUCCESS' ? 'ok' : 'bad'">
+              {{ statusText(t) }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <button class="nav-item" (click)="goHome()">
+        <span class="material-symbols-outlined">home</span>
+        <div>Home</div>
+      </button>
+
+      <button class="nav-item" (click)="goToTransfer()">
+        <span class="material-symbols-outlined">sync_alt</span>
+        <div>Transfer</div>
+      </button>
+
+      <button class="nav-item active" (click)="goToHistory()">
+        <span class="material-symbols-outlined">history</span>
+        <div>History</div>
+      </button>
+    </div>
+
+  </div>
+</div>

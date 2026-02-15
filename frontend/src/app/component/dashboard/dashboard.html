@@ -1,0 +1,49 @@
+<div class="page">
+  <div class="shell">
+
+    <!-- Welcome Section -->
+    <div class="welcome-banner">
+      <h3>Welcome, {{ user?.holderName }} </h3>
+    </div>
+
+    <!-- Balance Section -->
+    <div class="balance-card">
+      <p>Current Balance</p>
+      <h1>₹ {{ user?.balance | number:'1.2-2' }}</h1>
+    </div>
+
+    <!-- Action Buttons (2x2 Grid) -->
+    <div class="action-grid">
+
+      <button class="action-card" (click)="goToTransfer()">
+        <div class="icon-circle">
+          <span class="material-symbols-outlined">sync_alt</span>
+        </div>
+        <div class="label">Transfer</div>
+      </button>
+
+      <button class="action-card" (click)="goToHistory()">
+        <div class="icon-circle">
+          <span class="material-symbols-outlined">history</span>
+        </div>
+        <div class="label">History</div>
+      </button>
+
+      <button class="action-card" (click)="goToProfile()">
+        <div class="icon-circle">
+          <span class="material-symbols-outlined">person</span>
+        </div>
+        <div class="label">Profile</div>
+      </button>
+
+      <button class="action-card" (click)="logout()">
+        <div class="icon-circle">
+          <span class="material-symbols-outlined">logout</span>
+        </div>
+        <div class="label">Logout</div>
+      </button>
+
+    </div>
+
+  </div>
+</div>

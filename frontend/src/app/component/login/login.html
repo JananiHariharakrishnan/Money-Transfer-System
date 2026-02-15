@@ -1,0 +1,31 @@
+<div id="title">Money Transfer System</div>
+
+<form (ngSubmit)="doLogin()">
+  <div class="form-container">
+    <div class="form-content">
+
+      <label for="username">User ID:</label>
+      <input 
+        type="number" 
+        id="username" 
+        name="username" 
+        [(ngModel)]="username" 
+        required>
+
+      <label for="password">Password: </label>
+      <input 
+        type="password" 
+        id="password" 
+        name="password" 
+        [(ngModel)]="password" 
+        required>
+
+      <button 
+        type="submit" 
+        [disabled]="!username || !password">
+        Submit
+      </button>
+
+    </div>
+  </div>
+</form>

@@ -1,0 +1,106 @@
+/* Page background */
+.page {
+  min-height: 100vh;
+  background: #d4dbd6;   /* same as form background */
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Main shell */
+.shell {
+  width: 100%;
+  max-width: 980px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  border: solid 1px #1e3f00;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+}
+
+/* Welcome */
+.welcome-banner h3 {
+  margin: 0;
+  color: #1e3f00;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+/* Balance Card */
+.balance-card {
+  background: #1e3f00;
+  padding: 22px;
+  border-radius: 12px;
+  width: 50%;
+  margin-left: 25%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.balance-card p {
+  margin: 0;
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+.balance-card h1 {
+  margin: 10px 0 0;
+  font-size: 40px;
+}
+
+/* 2x2 Grid */
+.action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Action Cards */
+.action-card {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #1e3f00;
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.action-card:hover {
+  background-color: #45a049;
+  color: white;
+}
+
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(30, 63, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-circle .material-symbols-outlined {
+  font-size: 22px;
+  color: #1e3f00;
+}
+
+.action-card:hover .material-symbols-outlined {
+  color: white;
+}
+
+.label {
+  font-size: 14px;
+}
+

@@ -1,0 +1,90 @@
+/* Container for the whole form, centering the box */
+ 
+body{
+  width: 100vw; /* Full width of the viewport */
+height: 100vh; /* Full height of the viewport */
+overflow: hidden;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 100vh;
+  background: #d4dbd6; /* Light background for contrast */
+}
+ 
+/* Form box with glassmorphism effect */
+.form-content {
+  background: rgba(255, 255, 255, 0.2); /* Light white background with transparency */
+  backdrop-filter: blur(10px); /* Blurring the background behind */
+  border-radius: 10px;
+  border:solid 1px #1e3f00;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+ 
+/* Styling form elements */
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+ 
+#title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight:bold;
+    background-color: #1e3f00;
+    color: white;
+    font-size:  30px;
+    padding:20px;
+}
+ 
+input {
+  padding: 12px;
+    width: 75%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+  outline: none;
+}
+ 
+input:focus {
+  border-color: #4CAF50; /* Highlight color on focus */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.7); /* Green glow effect on focus */
+}
+ 
+/* Submit button styling */
+button {
+    align-self: center;
+    display: flex;
+  background-color: #1e3f00; /* Light green button */
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  align-content: center;
+  text-align: center;
+}
+ 
+button:disabled {
+  background-color: #aaa;
+}
+ 
+button:hover {
+  background-color: #45a049; /* Slightly darker green when hovered */
+}
