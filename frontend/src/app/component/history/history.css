@@ -151,6 +151,23 @@
 .shell {
   margin-bottom: 80px;
 }
-
-  color: #b42318;
+.filters{
+  display:flex;
+  gap:10px;
+  margin: 10px 0 14px;
+}
+ 
+.filter-btn{
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+ 
+.filter-btn.active{
+  border-color: #111827;
+  background: #111827;
+  color: #fff;
 }
