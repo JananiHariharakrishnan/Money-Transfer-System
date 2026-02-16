@@ -13,6 +13,7 @@ import { Profile } from './component/profile/profile';
 import { CommonModule } from '@angular/common';
 import { HttpinterceptorService } from './service/httpinterceptor';
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptors, with
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    NgChartsModule
   ],
   providers: [
     {

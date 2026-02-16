@@ -37,6 +37,10 @@ export class History implements OnInit {
   loading = true;
  
   filterMode: FilterMode = 'all';
+  
+  searchQuery = '';
+  
+
  
   ngOnInit(): void {
 
@@ -86,22 +90,27 @@ export class History implements OnInit {
 
   }
  
+  private searchMatches(t: TransactionLogInterface): boolean {
+    const query = this.searchQuery.toLowerCase().trim();
+    if (!query) return true;
+    
+    const amount = t.amount.toString();
+    const fromId = t.fromAccountId.toString();
+    const toId = t.toAccountId.toString();
+    
+    return amount.includes(query) || fromId.includes(query) || toId.includes(query);
+  }
+ 
   get filteredTransactions(): TransactionLogInterface[] {
-
+    let result = this.transactions;
+    
     if (this.filterMode === 'sent') {
-
-      return this.transactions.filter(t => !this.isCredit(t));
-
+      result = result.filter(t => !this.isCredit(t));
+    } else if (this.filterMode === 'received') {
+      result = result.filter(t => this.isCredit(t));
     }
-
-    if (this.filterMode === 'received') {
-
-      return this.transactions.filter(t => this.isCredit(t));
-
-    }
-
-    return this.transactions;
-
+    
+    return result.filter(t => this.searchMatches(t));
   }
  
   setFilter(mode: FilterMode) {
@@ -115,6 +124,8 @@ export class History implements OnInit {
     return (t.status || '').toUpperCase() === 'SUCCESS' ? 'Success' : 'Failed';
 
   }
+
+
  
   goHome() { this.router.navigate(['/dashboard', this.accId]); }
 

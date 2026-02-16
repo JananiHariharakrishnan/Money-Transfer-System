@@ -55,6 +55,12 @@
   text-align: right;
 }
 
+.account-info {
+  font-size: 13px;
+  color: #565656;
+  font-weight: 500;
+}
+
 .chip {
   display: inline-flex;
   padding: 4px 10px;
@@ -171,3 +177,32 @@
   background: #111827;
   color: #fff;
 }
+
+.search-export {
+  display: flex;
+  gap: 12px;
+  margin: 14px 0;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.1);
+}
+
+.search-input::placeholder {
+  color: #9ca3af;
+}
+
+

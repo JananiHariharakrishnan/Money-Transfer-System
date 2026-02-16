@@ -12,6 +12,30 @@
       <h1>₹ {{ user?.balance | number:'1.2-2' }}</h1>
     </div>
 
+    <!-- Charts & Stats Section -->
+    <div class="charts-section" *ngIf="!statsLoading">
+      <div class="chart-container">
+        <h3>Transaction Overview</h3>
+        <canvas 
+          #transactionChart
+          class="chart">
+        </canvas>
+      </div>
+
+      <div class="stats-cards">
+        <div class="stat-card sent">
+          <div class="stat-label">Total Sent</div>
+          <div class="stat-value">₹ {{ stats.totalSent | number:'1.2-2' }}</div>
+          <div class="stat-count">{{ stats.sentCount }} transactions</div>
+        </div>
+        <div class="stat-card received">
+          <div class="stat-label">Total Received</div>
+          <div class="stat-value">₹ {{ stats.totalReceived | number:'1.2-2' }}</div>
+          <div class="stat-count">{{ stats.receivedCount }} transactions</div>
+        </div>
+      </div>
+    </div>
+
     <!-- Action Buttons (2x2 Grid) -->
     <div class="action-grid">
 

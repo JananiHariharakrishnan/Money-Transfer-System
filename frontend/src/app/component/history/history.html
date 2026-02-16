@@ -16,6 +16,16 @@
         Received
 </button>
 </div>
+
+    <div class="search-export">
+      <input 
+        type="text" 
+        class="search-input" 
+        placeholder="Search by amount or account number..."
+        [(ngModel)]="searchQuery"
+      />
+    </div>
+
  
     <div *ngIf="loading" class="loading">Loading transactions...</div>
  
@@ -28,6 +38,7 @@
 <tr>
 <th>Date</th>
 <th>Type</th>
+<th>Account</th>
 <th class="right">Amount</th>
 <th>Status</th>
 </tr>
@@ -42,6 +53,10 @@
               {{ isCredit(t) ? 'CREDIT' : 'DEBIT' }}
 </span>
 </td>
+
+          <td class="account-info">
+            {{ isCredit(t) ? 'From: ' + t.fromAccountId : 'To: ' + t.toAccountId }}
+          </td>
  
           <td class="right">
 <span [ngClass]="isCredit(t) ? 'amt-credit' : 'amt-debit'">

@@ -104,3 +104,89 @@
   font-size: 14px;
 }
 
+/* Charts & Stats Section */
+.charts-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin: 10px 0;
+}
+
+.chart-container {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-container h3 {
+  margin: 0 0 15px 0;
+  color: #1e3f00;
+  font-weight: bold;
+  width: 100%;
+}
+
+.chart {
+  max-width: 280px;
+  max-height: 280px;
+}
+
+.stats-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-left: 4px solid;
+}
+
+.stat-card.sent {
+  border-left-color: #b42318;
+  background: linear-gradient(135deg, rgba(255, 236, 236, 0.8), rgba(255, 255, 255, 0.6));
+}
+
+.stat-card.received {
+  border-left-color: #067647;
+  background: linear-gradient(135deg, rgba(234, 250, 240, 0.8), rgba(255, 255, 255, 0.6));
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #667085;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1e3f00;
+}
+
+.stat-count {
+  font-size: 13px;
+  color: #666;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .charts-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .balance-card {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
